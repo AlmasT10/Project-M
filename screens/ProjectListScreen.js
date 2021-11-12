@@ -40,7 +40,7 @@ const ProjectListScreen = () => {
     <ListItem
       bottomDivider
       onPress={() => {
-        navigation.navigate("");
+        navigation.navigate("TaskList");
       }}
     >
       <ListItem.Content>

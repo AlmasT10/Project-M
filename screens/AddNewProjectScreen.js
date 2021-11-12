@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import {
   Text,
@@ -10,7 +10,6 @@ import {
 } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-import DatePicker from "react-native-date-picker";
 
 const AddNewProjectScreen = (props) => {
   const navigation = useNavigation();
@@ -46,9 +45,7 @@ const AddNewProjectScreen = (props) => {
               name="calendar"
               type="font-awesome"
               color="black"
-              onPress={() => {
-                <DatePicker date={date} onDateChange={setDate} />;
-              }}
+              onPress={() => {}}
             />
           }
         />

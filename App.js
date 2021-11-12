@@ -21,6 +21,9 @@ import {
 import { auth } from "./firebase";
 import { useNavigation } from "@react-navigation/core";
 import ProfileScreen from "./screens/ProfileScreen";
+import TaskListScreen from "./screens/TaskListScreen";
+import AddNewTaskScreen from "./screens/AddNewTaskScreen";
+import EditTaskScreen from "./screens/EditTaskScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -125,6 +128,51 @@ function ProjectStack() {
       <Stack.Screen
         name="NewProject"
         component={AddNewProjectScreen}
+        options={{
+          headerRight: (props) => (
+            <Button
+              icon={<Ionicons name="add-outline" size={30} color="black" />}
+              type="clear"
+              onPress={() => {
+                navigation.navigate("NewProject");
+              }}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="TaskList"
+        component={TaskListScreen}
+        options={{
+          headerRight: (props) => (
+            <Button
+              icon={<Ionicons name="add-outline" size={30} color="black" />}
+              type="clear"
+              onPress={() => {
+                navigation.navigate("CreateTask");
+              }}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="CreateTask"
+        component={AddNewTaskScreen}
+        options={{
+          headerRight: (props) => (
+            <Button
+              icon={<Ionicons name="add-outline" size={30} color="black" />}
+              type="clear"
+              onPress={() => {
+                navigation.navigate("NewProject");
+              }}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="EditTask"
+        component={EditTaskScreen}
         options={{
           headerRight: (props) => (
             <Button

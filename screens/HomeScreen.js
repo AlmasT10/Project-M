@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import { Button, Text, ListItem, Avatar } from "react-native-elements";
+import {
+  Button,
+  Text,
+  ListItem,
+  Avatar,
+  CheckBox,
+} from "react-native-elements";
 import { auth } from "../firebase";
+import { LinearProgress } from "react-native-elements";
 
 const HomeScreen = (props) => {
   const [currentHrs, setCurrentHrs] = useState("");
@@ -47,9 +54,10 @@ const HomeScreen = (props) => {
     <ListItem
       bottomDivider
       onPress={() => {
-        // props.navigation.navigate('')
+        props.navigation.navigate("EditTask");
       }}
     >
+      <CheckBox />
       <ListItem.Content>
         <ListItem.Title>{item.name}</ListItem.Title>
         <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
