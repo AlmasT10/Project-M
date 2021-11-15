@@ -57,7 +57,7 @@ const TaskListScreen = ({ route }) => {
         navigation.navigate("EditTask", { task: item });
       }}
     >
-      <CheckBox />
+      <CheckBox checked={item.status} />
       <ListItem.Content>
         <ListItem.Title>{item.name}</ListItem.Title>
         <ListItem.Subtitle>{item.type}</ListItem.Subtitle>
