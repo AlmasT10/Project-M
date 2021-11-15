@@ -25,6 +25,7 @@ import TaskListScreen from "./screens/TaskListScreen";
 import AddNewTaskScreen from "./screens/AddNewTaskScreen";
 import EditTaskScreen from "./screens/EditTaskScreen";
 import ProjectMemberScreen from "./screens/ProjectMemberScreen";
+import ProjectSalaryScreen from "./screens/ProjectSalaryScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -64,9 +65,10 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Members"
-        component={MembersScreen}
+        name="MembersStack"
+        component={MemberStack}
         options={{
+          headerShown: false,
           tabBarIcon: (props) => (
             <Button
               icon={<FontAwesome name="group" size={24} color="black" />}
@@ -139,6 +141,16 @@ function ProjectStack() {
       <Stack.Screen name="CreateTask" component={AddNewTaskScreen} />
       <Stack.Screen name="EditTask" component={EditTaskScreen} />
       <Stack.Screen name="ProjectMember" component={ProjectMemberScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function MemberStack() {
+  const navigation = useNavigation();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Members" component={MembersScreen} />
+      <Stack.Screen name="MemberSalary" component={ProjectSalaryScreen} />
     </Stack.Navigator>
   );
 }

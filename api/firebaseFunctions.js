@@ -174,7 +174,7 @@ const readUserTasks = (user) => {
   }, []);
 
   for (var i = 0; i < usersTaskList.length; i++) {
-    if (usersTaskList[i].memberName == user) {
+    if (usersTaskList[i].memberEmail.toLowerCase() === user.toLowerCase()) {
       list.push({
         name: usersTaskList[i].name,
         id: usersTaskList[i].id,
@@ -212,3 +212,21 @@ const editTasks = (id, startDate, endDate, hoursWorked, status, comments) => {
 };
 
 export { editTasks };
+
+const getUser = (user) => {
+  const [userData, setUserData] = useState([]);
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "users"), (snapshot) => {
+      setUserData(snapshot.docs.map((doc) => doc.data()));
+    });
+    return unsubscribe;
+  }, []);
+
+  for (var i = 0; i < userData.length; i++) {
+    if (userData[i].email.toLowerCase() == user.toLowerCase()) {
+      return userData[i];
+    }
+  }
+};
+
+export { getUser };

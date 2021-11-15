@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Dimensions, ScrollView, StyleSheet, View, Image } from "react-native";
 import { Avatar, Input, Text, Button } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
+import { auth } from "../firebase";
+import { getUser } from "../api/firebaseFunctions";
 
 const ProfileScreen = () => {
+  const user = auth.currentUser.email;
+  var cUser = getUser(user);
+  console.log(cUser);
+
   const [image, setImage] = useState(null);
   useEffect(() => {
     (async () => {
@@ -51,9 +57,17 @@ const ProfileScreen = () => {
         </Avatar>
       </View>
       <View>
-        <Input label="Name" placeholder="Enter Your Name" />
-        <Input label="Email" placeholder="Enter Your Email" />
-        <Input label="Phone" placeholder="Enter Your Phone" />
+        <Input label="Name" placeholder="Enter Your Name" value={cUser.name} />
+        <Input
+          label="Email"
+          placeholder="Enter Your Email"
+          value={cUser.email}
+        />
+        <Input
+          label="Phone"
+          placeholder="Enter Your Phone"
+          value={cUser.phone}
+        />
         <Button title="Save" />
       </View>
     </ScrollView>

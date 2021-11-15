@@ -1,8 +1,10 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
 
 const MembersScreen = () => {
+  const navigation = useNavigation();
   const list = [
     {
       memberName: "Almas",
@@ -33,7 +35,7 @@ const MembersScreen = () => {
       containerStyle={styles.list}
       bottomDivider
       onPress={() => {
-        // navigation.navigate("TaskList", { title: item.name });
+        navigation.navigate("MemberSalary");
       }}
     >
       <ListItem.Content>

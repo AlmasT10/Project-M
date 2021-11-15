@@ -28,7 +28,7 @@ const HomeScreen = (props) => {
 
   const user = auth.currentUser.email;
   var username = readData(user);
-  const list = readUserTasks(username);
+  const list = readUserTasks(user);
   console.log(list);
   // const list = [
   //   {
