@@ -26,7 +26,7 @@ const RegisterScreen = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [user, setUser] = useState({ id, name, email, phone });
+  // const [user, setUser] = useState({ id, name, email, phone });
 
   const signUp = () => {
     createUserWithEmailAndPassword(auth, email, password)

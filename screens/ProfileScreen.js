@@ -8,7 +8,9 @@ import { getUser } from "../api/firebaseFunctions";
 const ProfileScreen = () => {
   const user = auth.currentUser.email;
   var cUser = getUser(user);
-  console.log(cUser);
+  const [name, setName] = useState(cUser.name);
+  const [email, setEmail] = useState(cUser.email);
+  const [phone, setPhone] = useState(cUser.phone);
 
   const [image, setImage] = useState(null);
   useEffect(() => {
@@ -57,16 +59,23 @@ const ProfileScreen = () => {
         </Avatar>
       </View>
       <View>
-        <Input label="Name" placeholder="Enter Your Name" value={cUser.name} />
+        <Input
+          label="Name"
+          placeholder="Enter Your Name"
+          value={cUser.name}
+          onChangeText={(text) => setName(text)}
+        />
         <Input
           label="Email"
           placeholder="Enter Your Email"
           value={cUser.email}
+          onChangeText={(text) => setEmail(text)}
         />
         <Input
           label="Phone"
           placeholder="Enter Your Phone"
           value={cUser.phone}
+          onChangeText={(text) => setPhone(text)}
         />
         <Button title="Save" />
       </View>

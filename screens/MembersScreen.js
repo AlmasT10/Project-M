@@ -2,29 +2,32 @@ import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
+import { getMembers, getUser, readData } from "../api/firebaseFunctions";
+import { auth } from "../firebase";
 
 const MembersScreen = () => {
   const navigation = useNavigation();
+  const user = auth.currentUser.email;
+  // const username = readData(user);
+  // const memberList = getMembers(username);
+  // console.log(memberList);
+  // const list = memberList;
   const list = [
     {
       memberName: "Almas",
       salary: 32000,
     },
     {
-      memberName: "Almas",
-      salary: 32000,
+      memberName: "Elmy",
+      salary: 37000,
     },
     {
-      memberName: "Almas",
-      salary: 32000,
+      memberName: "Jack",
+      salary: 30000,
     },
     {
-      memberName: "Almas",
-      salary: 32000,
-    },
-    {
-      memberName: "Almas",
-      salary: 32000,
+      memberName: "Vivek",
+      salary: 40000,
     },
   ];
 

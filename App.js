@@ -68,6 +68,7 @@ function MyTabs() {
         name="MembersStack"
         component={MemberStack}
         options={{
+          tabBarLabel: "Members",
           headerShown: false,
           tabBarIcon: (props) => (
             <Button

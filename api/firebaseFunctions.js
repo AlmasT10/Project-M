@@ -215,6 +215,7 @@ export { editTasks };
 
 const getUser = (user) => {
   const [userData, setUserData] = useState([]);
+  const u = {};
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "users"), (snapshot) => {
       setUserData(snapshot.docs.map((doc) => doc.data()));
@@ -223,10 +224,47 @@ const getUser = (user) => {
   }, []);
 
   for (var i = 0; i < userData.length; i++) {
-    if (userData[i].email.toLowerCase() == user.toLowerCase()) {
-      return userData[i];
+    if (userData[i].email.toLowerCase() === user.toLowerCase()) {
+      u.name = userData[i].name;
+      u.email = userData[i].email;
+      u.phone = userData[i].phone;
     }
   }
+  return u;
 };
 
 export { getUser };
+
+const getMembers = (user) => {
+  const [memberList, setMemberList] = useState([]);
+  var membersL = [];
+  var x = [];
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "projects"), (snapshot) => {
+      setMemberList(snapshot.docs.map((doc) => doc.data()));
+    });
+    return unsubscribe;
+  }, []);
+
+  for (var i = 0; i < memberList.length; i++) {
+    if (memberList[i].createdBy == user) {
+      membersL.push(memberList[i].members);
+    }
+    for (var j = 0; j < membersL.length; j++) {
+      console.log(membersL[j].name);
+      // x.push({ name: membersL[j].name, email: membersL[j].email });
+    }
+    console.log(x);
+  }
+  // for (var i = 0; i < membersL.length; i++) {
+  //   var x = membersL[i];
+  //   for (var j = 0; j < x.length; i++) {
+  //     members.push(x[j]);
+  //   }
+  // }
+  // console.log(members);
+
+  return x;
+};
+
+export { getMembers };
