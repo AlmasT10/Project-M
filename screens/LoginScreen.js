@@ -60,7 +60,12 @@ const LoginScreen = (props) => {
           secureTextEntry={true}
         />
         <View>
-          <Button title="Login" onPress={() => signIn()} />
+          <Button
+            title="Login"
+            onPress={() => {
+              signIn();
+            }}
+          />
         </View>
       </View>
 

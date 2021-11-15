@@ -24,6 +24,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import TaskListScreen from "./screens/TaskListScreen";
 import AddNewTaskScreen from "./screens/AddNewTaskScreen";
 import EditTaskScreen from "./screens/EditTaskScreen";
+import ProjectMemberScreen from "./screens/ProjectMemberScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,31 +32,15 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   const navigation = useNavigation();
-  const signOut = () => {
-    auth.signOut();
-    navigation.navigate("Login");
-  };
+
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="HomeStack"
+        component={HomeStack}
         options={{
-          headerLeft: (props) => (
-            <Button
-              icon={<SimpleLineIcons name="logout" size={24} color="black" />}
-              type="clear"
-              onPress={() => signOut()}
-            />
-          ),
-          headerRight: (props) => (
-            <Button
-              icon={
-                <Ionicons name="chatbubbles-outline" size={24} color="black" />
-              }
-              type="clear"
-            />
-          ),
+          headerShown: false,
+          tabBarLabel: "Home",
           tabBarIcon: (props) => (
             <Button
               icon={<FontAwesome5 name="home" size={24} color="black" />}
@@ -106,85 +91,54 @@ function MyTabs() {
   );
 }
 
+function HomeStack() {
+  const navigation = useNavigation();
+  const signOut = () => {
+    auth.signOut();
+    navigation.navigate("Login");
+  };
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerLeft: (props) => (
+            <Button
+              icon={<SimpleLineIcons name="logout" size={24} color="black" />}
+              type="clear"
+              onPress={() => signOut()}
+            />
+          ),
+          headerRight: (props) => (
+            <Button
+              icon={
+                <Ionicons name="chatbubbles-outline" size={24} color="black" />
+              }
+              type="clear"
+            />
+          ),
+        }}
+      />
+      <Stack.Screen name="EditTask" component={EditTaskScreen} />
+    </Stack.Navigator>
+  );
+}
+
 function ProjectStack() {
   const navigation = useNavigation();
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Projects"
-        component={ProjectListScreen}
-        options={{
-          headerRight: (props) => (
-            <Button
-              icon={<Ionicons name="add-outline" size={30} color="black" />}
-              type="clear"
-              onPress={() => {
-                navigation.navigate("NewProject");
-              }}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="NewProject"
-        component={AddNewProjectScreen}
-        options={{
-          headerRight: (props) => (
-            <Button
-              icon={<Ionicons name="add-outline" size={30} color="black" />}
-              type="clear"
-              onPress={() => {
-                navigation.navigate("NewProject");
-              }}
-            />
-          ),
-        }}
-      />
+      <Stack.Screen name="Projects" component={ProjectListScreen} />
+      <Stack.Screen name="NewProject" component={AddNewProjectScreen} />
       <Stack.Screen
         name="TaskList"
         component={TaskListScreen}
-        options={{
-          headerRight: (props) => (
-            <Button
-              icon={<Ionicons name="add-outline" size={30} color="black" />}
-              type="clear"
-              onPress={() => {
-                navigation.navigate("CreateTask");
-              }}
-            />
-          ),
-        }}
+        options={({ route }) => ({ title: route.params.title })}
       />
-      <Stack.Screen
-        name="CreateTask"
-        component={AddNewTaskScreen}
-        options={{
-          headerRight: (props) => (
-            <Button
-              icon={<Ionicons name="add-outline" size={30} color="black" />}
-              type="clear"
-              onPress={() => {
-                navigation.navigate("NewProject");
-              }}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="EditTask"
-        component={EditTaskScreen}
-        options={{
-          headerRight: (props) => (
-            <Button
-              icon={<Ionicons name="add-outline" size={30} color="black" />}
-              type="clear"
-              onPress={() => {
-                navigation.navigate("NewProject");
-              }}
-            />
-          ),
-        }}
-      />
+      <Stack.Screen name="CreateTask" component={AddNewTaskScreen} />
+      <Stack.Screen name="EditTask" component={EditTaskScreen} />
+      <Stack.Screen name="ProjectMember" component={ProjectMemberScreen} />
     </Stack.Navigator>
   );
 }
