@@ -120,6 +120,9 @@ const AddTaskData = (
     memberEmail: memberEmail,
     startDate: startDate,
     endDate: endDate,
+    status: false,
+    comments: "",
+    hoursWorked: "",
   })
     .then((data) => {
       console.log(data);
